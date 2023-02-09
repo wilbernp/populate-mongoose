@@ -7,8 +7,13 @@ export default {
     create: async (post:IPost) => {
         const findUser = await UserModel.findById(post.author)
         const postCreated = await new PostModel(post).save()
+
+        // se agregar el nuevo post al arreglo de posts del usuario que crea el post,
+        // esto para que en las consultas posteriores al modelo de usuario se incluya dicho array
+        // con todos los posts que ha creado
         findUser?.posts.unshift(postCreated._id)
         await findUser?.save()
+
         return postCreated
     },
     getAll: async () => {
