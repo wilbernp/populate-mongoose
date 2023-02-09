@@ -13,7 +13,15 @@ export default {
     },
     getAll: async () => {
         return await PostModel.find()
+        // se obtiene los campos seleccionados del autor del post
         .populate({path:"author", select:"_id username"})
+        // se obtiene el array de comentarios del pots
+        .populate({
+            path:"comments",
+            select:"-__v",
+            // se anida otro populate para obtener los campos especificados del autor del comentario
+            populate:{path:"author", select:"_id username"}
+        })
         .select("-__v")
     },
 
