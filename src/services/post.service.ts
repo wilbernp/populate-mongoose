@@ -6,7 +6,8 @@ export default {
     create: async (post:IPost) => {
         const findUser = await UserModel.findById(post.author)
         const postCreated = await new PostModel(post).save()
-
+        findUser?.posts.unshift(postCreated._id)
+        await findUser?.save()
         return postCreated
     },
     getAll: async () => {
