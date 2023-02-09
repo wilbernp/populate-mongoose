@@ -12,10 +12,14 @@ export default {
     },
     getAll: async () => {
         return await PostModel.find()
+        .populate({path:"author", select:"_id username"})
+        .select("-__v")
     },
 
     getById: async (id:string) => {
         return await PostModel.findById(id)
+        .populate({path:"author", select:"_id username"})
+        .select("-__v")
     },
 
 }
