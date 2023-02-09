@@ -4,8 +4,8 @@ import postService from "../services/post.service"
 
 export default {
     create: async (req: Request, res: Response) => {
-        const createdExample = await postService.create(req.body)
-        res.send(createdExample)
+        const postCreated = await postService.create(req.body)
+        res.send(postCreated)
     },
     getAll: async (req: Request, res: Response) => {
         const allExamples = await postService.getAll()
@@ -13,7 +13,7 @@ export default {
     },
     
     getById: async (req: Request, res: Response) => {
-        const example = await postService.getById(req.params.id)
-        res.send(example)
+        const post = await postService.getById(req.params.id)
+        res.send(post)
     }
 }
