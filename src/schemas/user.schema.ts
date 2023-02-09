@@ -4,7 +4,7 @@ import { IUser } from "../types/user";
 
 const UserSchema = new Schema<IUser>({
    username:String,
-   posts:[{type:Schema.Types.ObjectId, ref:"User"}]
+   posts:[{type:Schema.Types.ObjectId, ref:"Post"}]
 },{
     timestamps:true
 })
