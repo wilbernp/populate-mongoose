@@ -3,6 +3,12 @@ import { PostModel } from "../schemas/post.schema"
 import { UserModel } from "../schemas/user.schema"
 import { IPost } from "../types/post"
 
+/* 
+    IMPORTANTE! para dejar el ejemplo lo mas sencillo posible no se esta haciendo ningun tipo de validacion
+    lo cual no esta bien pero preferi dejarlo de esta forma para enfocarme unicamente en como usar 
+    el populate de mongoose para hacer referencias a otros modelos
+ */
+
 export default {
     create: async (post:IPost) => {
         const findUser = await UserModel.findById(post.author)
