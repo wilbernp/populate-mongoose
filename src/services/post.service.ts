@@ -1,3 +1,4 @@
+import { Types } from "mongoose"
 import { PostModel } from "../schemas/post.schema"
 import { UserModel } from "../schemas/user.schema"
 import { IPost } from "../types/post"
@@ -16,7 +17,7 @@ export default {
         .select("-__v")
     },
 
-    getById: async (id:string) => {
+    getById: async (id:Types.ObjectId) => {
         return await PostModel.findById(id)
         .populate({path:"author", select:"_id username"})
         .select("-__v")
