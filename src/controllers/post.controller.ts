@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { Types } from "mongoose"
 import postService from "../services/post.service"
 
 
@@ -13,7 +14,9 @@ export default {
     },
     
     getById: async (req: Request, res: Response) => {
-        const post = await postService.getById(req.params.id)
+        // esto es para poder convertir el param al tipo que espera la funcion getById
+        const postId = req.params.id as unknown as Types.ObjectId
+        const post = await postService.getById(postId)
         res.send(post)
     }
 }
